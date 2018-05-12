@@ -9,6 +9,7 @@ from fonctions_jeu import* #chargement des fonctions#
 from menu import*
 from menupause import*
 from menuperdu import*
+#modif
 
 """fonction de jeu prenant pour paramètres jouer, jeu et score"""
 
