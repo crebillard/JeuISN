@@ -9,7 +9,6 @@ from fonctions_jeu import* #chargement des fonctions#
 from menu import*
 from menupause import*
 from menuperdu import*
-#modif
 
 """fonction de jeu prenant pour paramètres jouer, jeu et score"""
 
@@ -31,7 +30,7 @@ def jeu1(jouer,jeu,score):
 
   position_fond=pygame.Rect(395,0,800,600) #coordonnées des fonds stockées dans des rectangles#
   position_fond1=pygame.Rect(-200,0,800,600)
-  position_fond2=pygame.Rect(-616,0,800,600)
+  position_fond2=pygame.Rect(-629,0,800,600)
 
   fonds=[fond,fond1,fond2] #création d'une liste contenant les fonds#
 
@@ -54,13 +53,13 @@ def jeu1(jouer,jeu,score):
   position_obstacle_haut=pygame.Rect(730,250,40,40) #coordonnées de l'obstacle bas dans un rectangle#
  
   perso=pygame.image.load("image/perso.png")  #chargement du personnage#
-  perso=pygame.transform.scale(perso,(32,32)) #modification de sa taille#
-  perso.set_colorkey((255,241,252))
+  perso=pygame.transform.scale(perso,(50,50)) #modification de sa taille#
+  perso.set_colorkey((255,255,255))
   position_perso=pygame.Rect(220,235,25,25) #création d'un rectangle contenant les coordonnées afin de faciliter les manipulations des coordonnées#
 
   perso1=pygame.image.load("image/perso1.png") 
-  perso1=pygame.transform.scale(perso1,(32,32))
-  perso1.set_colorkey((255,241,252))
+  perso1=pygame.transform.scale(perso1,(50,50))
+  perso1.set_colorkey((255,255,255))
 
   piece=pygame.image.load("image/Pokeball.png") #chargement de la pièce#
   piece=pygame.transform.scale(piece,(30,30)) #modification de sa taille#
@@ -92,7 +91,6 @@ def jeu1(jouer,jeu,score):
   duree_pause=0 #temps total passé dans le menu de pause#
 
   continuer=1  #pour la boucle infinie#
-  numero_fond=0 #numéro du fond affiché#
   rebours=1 #permet l'activation du compte à rebours#
   crash=0    #test de collision#
   perdu=0 #indique si le joueur a perdu#
@@ -107,7 +105,7 @@ def jeu1(jouer,jeu,score):
   present1=0 #pas de pièce initialement#
   
   pygame.mixer.init() #initialisation du module gérant la musique#
-  pygame.mixer.music.load("cloche.mp3") 
+  pygame.mixer.music.load("jeu.mp3") 
   pygame.mixer.music.play(loops=1,start=0.0)
 
   '''génération du premier obstacle'''
@@ -200,15 +198,14 @@ def jeu1(jouer,jeu,score):
 
       if event.type==QUIT: #évènement quitter#
         continuer=0   #sortie de la boucle jeu#
-        jouer=0 #sortie de la boucle principale#
-        return(jouer,jeu,score) #renvoie à la fonction principale#        
+        jouer=0 #sortie de la boucle principale#   
             
       if event.type==KEYDOWN: #touche pressée#
 
-        if event.key==K_UP and position_perso[1]>=225: #flèche du haut#
+        if event.key==K_UP and position_perso[1]>=220: #flèche du haut#
             position_perso=haut(position_perso) #mouvement vers le haut du personnage#                  
       
-        if event.key==K_DOWN and position_perso[1]<345:                   
+        if event.key==K_DOWN and position_perso[1]<338:                   
             position_perso=bas(position_perso) #déplacement vers le bas du personnage#               
            
         if event.key==K_RIGHT and position_perso[0]<=768: #flèche de droite : déplacement#
@@ -240,6 +237,7 @@ def jeu1(jouer,jeu,score):
 
   pygame.mixer.music.stop() #stopper la musique#
   pygame.key.set_repeat(0,0)
+  pygame.mixer.quit()
   return(jouer,jeu,score) #renvoie à la fonction principale les varaibles#
 
   
