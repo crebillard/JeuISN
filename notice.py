@@ -18,8 +18,8 @@ def notice(jeu,jouer):
 
     pygame.display.flip()
     taillefont=22
-    font = pygame.font.SysFont("comicsansms",85, bold=True, italic=False) #on définit la police du titre
-    font1 = pygame.font.SysFont("comicsansms",taillefont, bold=False, italic=False) #on définit la police du paragraphe
+    font = pygame.font.Font("arcade.ttf",85, bold=True, italic=False) #on définit la police du titre
+    font1 = pygame.font.SysFont("Bungee-Regular.ttf",taillefont, bold=False, italic=False) #on définit la police du paragraphe
     titre = font.render("Notice",0,(200,200,200)) #on applique la police au titre
 
     fenetre.blit(titre,(290,80)) # on affiche le titre dans notre fenêtre
