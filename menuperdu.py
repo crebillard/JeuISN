@@ -13,9 +13,6 @@ def menu_perdu(continuer,jouer,jeu,points):
 
   fenetre= pygame.display.set_mode((800,600)) #ouverture d'une fenêtre de taille 800*600#
   pygame.font.init()
-  pygame.mixer.init() #initialisation du module mixer pour la musique#
-  pygame.mixer.music.load("cloche.mp3")
-  pygame.mixer.music.play(loops=1,start=0.0)
 
   """ouverture et lecture du fichier contenant le record"""
 
@@ -28,15 +25,19 @@ def menu_perdu(continuer,jouer,jeu,points):
   classement.seek(0) #positionne le curseur au début du fichier#
   meilleur_score=classement.readline() #lecture du fichier#
   classement.close() #fermeture du fichier#
-
+  
+  nouveau_record=0
   if int(meilleur_score)<points: #si le joueur a battu le meilleur score#
     classement=open(fichier,"w") #ouverture du fichier en mode écriture#
     classement.write(str(points)) #remplacement du meilleur score#
     classement.close() #fermeture du fichier#  
+    nouveau_record=1
 
   blanc=(200,200,200) #RGB de la couleur blanche choisie#
   rouge=(200,0,0) #RGB de la couleur rouge choisie#
+  jaune=(255,255,0)
   couleur=[blanc,blanc,blanc]
+  clignote=[rouge,jaune]
 
   font= pygame.font.SysFont("police.ttf",85, bold=True, italic=False) #caractéristiques d'un objet de type font#
   titre= font.render("Game Over",0,blanc) #titre possédant les caractéristiques de font#
@@ -53,13 +54,16 @@ def menu_perdu(continuer,jouer,jeu,points):
   valeur_record=font2.render(meilleur_score,0,rouge) #affectation au record des caractéristiques de font2 et de la couleur rouge#
 
   j=-1 #rang du sous titre sélectionné#
+  rang_couleur=0
   perdre = True #pour la bouche while faisant tourner le menu#
+  debut=int(time.clock())
 
   while perdre:
 
     soustitre1=font1.render(soustitres[0],0,couleur[0]) #affectation aux sous titres de la liste des caractéristiques de font1 et de la couleur blanche#
     soustitre2=font1.render(soustitres[1],0,couleur[1])
     soustitre3=font1.render(soustitres[2],0,couleur[2])
+    new=font2.render("Nouveau Record !",0,clignote[rang_couleur])
 
     fenetre.blit(titre,(340,150)) #affichage du titre#
     fenetre.blit(soustitre1,(350,260)) #affichage des sous titres#
@@ -69,6 +73,17 @@ def menu_perdu(continuer,jouer,jeu,points):
     fenetre.blit(valeur_score,(155,30)) #affichage de la valeur du score#
     fenetre.blit(record,(30,65)) #affichage de "record"#
     fenetre.blit(valeur_record,(175,65)) #affichage de la valeur du record#
+
+    if nouveau_record==1:
+
+      fenetre.blit(new,(30,100))
+      fin=int(time.clock()-debut)
+      if fin>=0.5:
+        debut=int(time.clock())
+        if rang_couleur==0:
+          rang_couleur=1
+        else:
+          rang_couleur=0
 
     pygame.display.flip() #rafraichissement de l'écran à chaque tour de la boucle#
 
