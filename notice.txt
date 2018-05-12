@@ -1,0 +1,9 @@
+Bienvenue dans notre jeu arcade.
+Vous avez le choix entre 2 jeux avec des univers et des personnages différents. 
+L’objectif dans les 2 jeux est d’éviter les obstacles en appuyant sur les flèches 
+du clavier. 
+Il est aussi possible d’attraper des récompenses. Le score sera calculé en 
+fonction du temps de la partie et du nombre de pièces attrapées.
+Vous pouvez également choisir d’avoir une musique de fond ou non. 
+Pour retourner au menu d’accueil, veuillez appuyer sur la touche « ECHAP ».
+Bonne chance !
