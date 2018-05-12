@@ -21,20 +21,20 @@ def menu(jeu,jouer):
 
     rouge=(200,0,0) #RGB pour la couleur rouge voulue#
     vert=(0,200,0) #RGB pour la couleur verte voulue#
-    bleu=(51,51,255)
-    bleucyan=(51,102,255)
-    couleur_gauche=[rouge,rouge,rouge,rouge]
-    couleur_rg=rouge
-    couleur_rd=rouge
-    couleur_mode1=rouge
-    couleur_mode2=rouge
+    bleu=(51,51,255) #RGB pour couleur bleue
+    bleucyan=(51,102,255) #RGB pour couleur bleu cyan
+    couleur_gauche=[rouge,rouge,rouge,rouge] #liste de couleurs
+    couleur_rg=rouge  #couleur rectangle gauche
+    couleur_rd=rouge #couleur rectangle droit
+    couleur_mode1=rouge #couleur des mode 1 et 2(normal et hardcore)
+    couleur_mode2=rouge 
 
-    font=pygame.font.Font("police.ttf", 75, bold= True, italic= False) #caractéristiques d'un objet de type font#
-    titre=font.render("Pocket Monster Runner",0,rouge) #titre possédant les caractéristiques de font#
+    font=pygame.font.Font("police.ttf", 75, bold= True, italic= False) #on définit la police 1
+    titre=font.render("Pocket Monster Runner",0,rouge) #on applique la police 1 au titre
 
-    font1=pygame.font.Font("police.ttf", 28, bold= False, italic= True) #caractéristiques d'un objet de type font#
+    font1=pygame.font.Font("police.ttf", 28, bold= False, italic= True) #police2
 
-    message = font1.render("Appuyez sur une touche du clavier",0,vert)
+    message = font1.render("Appuyez sur une touche du clavier",0,vert) #on applique la police 2 au message et aux modes
     mode1= font1.render("Normal",0,couleur_mode1)
     mode2=font1.render("Hardcore",0,couleur_mode2)
 
@@ -47,10 +47,10 @@ def menu(jeu,jouer):
     jeu=0 #pas de jeu sélectionné#
     intervalle=0
     numero_fond=0
-    horloge = int(time.clock())
-    couleurs=[vert,bleu] #liste de couleurs
-    var=0
-    p=8
+    horloge = int(time.clock()) #horloge qui mesure le temps depuis l'ouverture du menu
+    couleurs=[vert,bleu] #liste de couleurs pour le message clignotant
+    var=0 #initialisation de var pour le message clignotant
+    p=8 #initialisation de p pour le message clignotant
 
     while menu: #boucle faisant tourner le menu#
 
@@ -78,7 +78,7 @@ def menu(jeu,jouer):
 
 
         fenetre.blit(titre,(25,50)) #affichage du titre#
-        fenetre.blit(soustitre1,(150,420)) #affichage des sous titres#
+        fenetre.blit(soustitre1,(150,420)) #affichage des sous titres et des modes#
         fenetre.blit(soustitre2,(150, 450))
         fenetre.blit(soustitre3,(150,480))
         fenetre.blit(soustitre4,(150,510))
@@ -90,26 +90,26 @@ def menu(jeu,jouer):
 
         pygame.display.flip() #rafraichissement de l'écran à chaque boucle#
 
-        if horloge < 4:
-            for i in range (1, p):
-                message = font1.render("Appuyez sur une flèche du clavier",0,couleurs[var])
-                fenetre.blit(message,(145,225))
-                pygame.display.flip()
-                if var==0:
+        if horloge < 4: #si le temps depuis l'ouverture du menu est inférieur à 4secondes
+            for i in range (1, p): #on va changer le message 8 fois
+                message = font1.render("Appuyez sur une flèche du clavier",0,couleurs[var]) #on applique la couleur correspondant à var au message
+                fenetre.blit(message,(145,225)) #on affiche le message avec la couleur
+                pygame.display.flip() #on actualise la fenêtre
+                if var==0: #changement de couleur 
                     var=var+1
                 elif var==1:
                     var=var-1
-                    horloge = int(time.clock())
-        else:
-            fenetre.blit(titre,(25,50)) #affichage du titre#
-            fenetre.blit(soustitre1,(150,420)) #affichage des sous titres#
+                    horloge = int(time.clock()) #on réactualise l'horloge
+        else: #au bout de 4 secondes, le message ne s'affiche plus et on réaffiche la fenêtre
+            fenetre.blit(titre,(25,50)) 
+            fenetre.blit(soustitre1,(150,420)) 
             fenetre.blit(soustitre2,(150, 450))
             fenetre.blit(soustitre3,(150,480))
             fenetre.blit(soustitre4,(150,510))
             fenetre.blit(mode1,(200,300))
             fenetre.blit(mode2,(550,300))
-            rectangle1=pygame.draw.rect(fenetre,couleur_rg,(145,275,300,75),5) #affichage d'un rectangle à gauche en rouge#
-            rectangle2=pygame.draw.rect(fenetre,couleur_rd,(495,275,300,75),5) #affichage d'un rectangle à droite en rouge#
+            rectangle1=pygame.draw.rect(fenetre,couleur_rg,(145,275,300,75),5) 
+            rectangle2=pygame.draw.rect(fenetre,couleur_rd,(495,275,300,75),5) 
             pygame.display.flip()
 
 
@@ -118,44 +118,42 @@ def menu(jeu,jouer):
           if event.type == pygame.QUIT: #quitter#
             jouer=0 #quitter la boucle principale#
             menu=0
-            #return(jeu,jouer) #renvoie les variables à la fonction principale#
+            return(jeu,jouer) #renvoie les variables à la fonction principale#
 
           elif event.type== pygame.KEYDOWN: #touche pressée#
 
             if event.key == pygame.K_LEFT: #flèche gauche#
 
                 couleur_gauche=[rouge,rouge,rouge,rouge]
-                couleur_rd=rouge
-                couleur_rg=bleucyan
+                couleur_rd=rouge  
+                couleur_rg=bleucyan #on change la couleur du rectangle gauche en bleu
                 couleur_mode1=bleucyan
                 couleur_mode2=rouge
                 r_gauche=1 #le rectangle gauche est sélectionné#
                 r_droite=0 #le rectangle droit n'est pas sélectionné#
                 k=-1 #pas encore de sous titres selectionné#
 
-            if event.key==pygame.K_RETURN and r_gauche==1: #rectangle gauche sélectionné et flèche du bas#
+            if event.key==pygame.K_RETURN and r_gauche==1: #rectangle gauche sélectionné et entrée#
                 jeu=1 #le jeu choisi est le jeu 1#
                 menu=False #quitter la boucle du menu#
 
 
             if event.key == pygame.K_RIGHT: #flèche droite#
                 couleur_gauche=[rouge,rouge,rouge,rouge]
-                couleur_rd=bleucyan
+                couleur_rd=bleucyan #on change la couleur du rectangle droit en bleu
                 couleur_rg=rouge
                 couleur_mode1=rouge
                 couleur_mode2=bleucyan
-                fenetre.blit(mode1,(200,300))
-                fenetre.blit(mode2,(550,300))
                 r_gauche=0 #rectangle gauche non sélectionné#
                 r_droite=1 #rectangle droit sélectionné#
                 k=-1 #pas encore de sous titre sélectionné#
 
-            if event.key==pygame.K_RETURN and r_droite==1: #rectangle droit sélectionné et flèche du bas#
+            if event.key==pygame.K_RETURN and r_droite==1: # si rectangle droit selectionné et on appuie sur entrée
                 jeu=2 #le jeu choisi est le jeu 2#
-                menu=False #quitter la boucle du menu#
+                menu=False #quitter la boucle du menu
 
-            if event.key==pygame.K_DOWN:
-                couleur_rd=rouge
+            if event.key==pygame.K_DOWN: #si on appuie sur la flèche du bas
+                couleur_rd=rouge #on remet les couleurs des rectangles en rouge
                 couleur_rg=rouge
 
                 k=k+1 #sous titre suivant sélectionné#
@@ -164,12 +162,12 @@ def menu(jeu,jouer):
                     k=k-1 #pas possible d'augmenter k et de descendre#
 
                 else: #si le dernier sous titre n'est pas celui sélectionné#
-                    couleur_gauche[k]=bleucyan
+                    couleur_gauche[k]=bleucyan #le sous titre sur lequel l'utilisateur est prend la couleur bleue
 
                     if k>0: #si on selectionne un sous titre autre que le premier il faut remettre celui du dessus en rouge#
                       couleur_gauche[k-1]=rouge
 
-            if event.key==pygame.K_UP:
+            if event.key==pygame.K_UP:#si l'utilisateur appuie sur la flèche du haut
 
                 k=k-1 #sous titre précédent sélectionné#
 
@@ -177,25 +175,25 @@ def menu(jeu,jouer):
                     k=k+1 #impossible de diminuer k et de monter#
 
                 else: #si le premier n'est pas sélectionné#
-                  couleur_gauche[k]=bleucyan
+                  couleur_gauche[k]=bleucyan #le sous titre sur lequel l'utilisateur est prend la couleur bleue
 
                   if k<3: #si on sélectionne un sous titre autre que le dernier il faut mettre celui du dessous en rouge#
                     couleur_gauche[k+1]=rouge
 
 
-            if event.key==pygame.K_RETURN and k==0: #rectangle gauche sélectionné, le joueur appuie sur entrée et record est sélectionné#
+            if event.key==pygame.K_RETURN and k==0: #si le joueur appuie sur entrée et record est sélectionné
                 jeu="Record" #pas de jeu sélectionné, il faut lancer record#
                 menu=False #quitte la boucle du menu#
 
-            if event.key==pygame.K_RETURN and k==1:
-            	jeu="Son"
-            	menu=False
+            if event.key==pygame.K_RETURN and k==1: #si l'utilisateur sélectionne son et appuie sur entrée
+            	jeu="Son" #On lance le menu son
+            	menu=False #on ferme le menu principal
 
-            if event.key==pygame.K_RETURN and k==2:
+            if event.key==pygame.K_RETURN and k==2: #si l'utilisateur sélectionne Notice et appuie sur entrée
                 menu = False #quitte la boucle du menu#
                 jeu="Notice" #pas de jeu sélectionné, il faut lancer la notice#
 
-            if event.key==pygame.K_RETURN and k==3: #rectangle gauche sélectionné, le joueur appuie sur entrée et quitter est sélectionné#
+            if event.key==pygame.K_RETURN and k==3: #si le joueur appuie sur entrée et quitter est sélectionné
                 jeu=0 #pas de jeu sélectionné#
                 jouer=0 #quitter la boucle principale#
                 menu=False #quitte la boucle du menu#
