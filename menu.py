@@ -11,10 +11,10 @@ import time
 def menu(jeu,jouer):
     fenetre= pygame.display.set_mode((800,600)) #ouverture d'une fenêtre de dimensions 800*600#
 
-    fond1=pygame.image.load ("image/menu.jpg")   #chargement du premier fond#
+    fond1=pygame.image.load ("menu.jpg")   #chargement du premier fond#
     fond1=pygame.transform.scale(fond1,(800,600)) #adaptation de la taille du fond à la fenêtre#
 
-    fond2=pygame.image.load ("image/menu.jpg") #chargement du deuxième fond#
+    fond2=pygame.image.load ("menu.jpg") #chargement du deuxième fond#
     fond2=pygame.transform.scale(fond2,(800,600))
 
     fonds=[fond1,fond2]
@@ -27,12 +27,12 @@ def menu(jeu,jouer):
     couleur_rg=rouge  #couleur rectangle gauche
     couleur_rd=rouge #couleur rectangle droit
     couleur_mode1=rouge #couleur des mode 1 et 2(normal et hardcore)
-    couleur_mode2=rouge 
+    couleur_mode2=rouge
 
-    font=pygame.font.Font("police.ttf", 75, bold= True, italic= False) #on définit la police 1
+    font=pygame.font.Font("arcade.ttf", 75, bold= True, italic= False) #on définit la police 1
     titre=font.render("Pocket Monster Runner",0,rouge) #on applique la police 1 au titre
 
-    font1=pygame.font.Font("police.ttf", 28, bold= False, italic= True) #police2
+    font1=pygame.font.Font("Bungee-Regular.ttf", 28, bold= False, italic= True) #police2
 
     message = font1.render("Appuyez sur une touche du clavier",0,vert) #on applique la police 2 au message et aux modes
     mode1= font1.render("Normal",0,couleur_mode1)
@@ -95,21 +95,21 @@ def menu(jeu,jouer):
                 message = font1.render("Appuyez sur une flèche du clavier",0,couleurs[var]) #on applique la couleur correspondant à var au message
                 fenetre.blit(message,(145,225)) #on affiche le message avec la couleur
                 pygame.display.flip() #on actualise la fenêtre
-                if var==0: #changement de couleur 
+                if var==0: #changement de couleur
                     var=var+1
                 elif var==1:
                     var=var-1
                     horloge = int(time.clock()) #on réactualise l'horloge
         else: #au bout de 4 secondes, le message ne s'affiche plus et on réaffiche la fenêtre
-            fenetre.blit(titre,(25,50)) 
-            fenetre.blit(soustitre1,(150,420)) 
+            fenetre.blit(titre,(25,50))
+            fenetre.blit(soustitre1,(150,420))
             fenetre.blit(soustitre2,(150, 450))
             fenetre.blit(soustitre3,(150,480))
             fenetre.blit(soustitre4,(150,510))
             fenetre.blit(mode1,(200,300))
             fenetre.blit(mode2,(550,300))
-            rectangle1=pygame.draw.rect(fenetre,couleur_rg,(145,275,300,75),5) 
-            rectangle2=pygame.draw.rect(fenetre,couleur_rd,(495,275,300,75),5) 
+            rectangle1=pygame.draw.rect(fenetre,couleur_rg,(145,275,300,75),5)
+            rectangle2=pygame.draw.rect(fenetre,couleur_rd,(495,275,300,75),5)
             pygame.display.flip()
 
 
@@ -125,7 +125,7 @@ def menu(jeu,jouer):
             if event.key == pygame.K_LEFT: #flèche gauche#
 
                 couleur_gauche=[rouge,rouge,rouge,rouge]
-                couleur_rd=rouge  
+                couleur_rd=rouge
                 couleur_rg=bleucyan #on change la couleur du rectangle gauche en bleu
                 couleur_mode1=bleucyan
                 couleur_mode2=rouge
