@@ -1,4 +1,5 @@
 """crée le 2/05/18 avec Python 3.2"""
+#Ajout commentaite pour test github
 
 import pygame #importation des bibliothèques#
 from pygame.locals import*
@@ -28,7 +29,7 @@ def score1(jeu,jouer):
 
   fenetre= pygame.display.set_mode((800,600)) #ouverture d'une fenêtre 800*600#
   menucolor=(51,51,51) #couleur du fond#
-  
+
   while continuer:
 
     fenetre.fill(menucolor) #remplissage du fond#
@@ -40,13 +41,13 @@ def score1(jeu,jouer):
 
     for event in pygame.event.get(): #évènements#
       if event.type == pygame.QUIT: #quitter#
-        continuer=False 
+        continuer=False
         jeu=0
         jouer=0 #quitter le jeu#
 
       if event.type== pygame.KEYDOWN: #touche pressée#
         if event.key==pygame.K_ESCAPE: #echap#
-          continuer=False #sortie de la boucle#  
+          continuer=False #sortie de la boucle#
           jeu=0
 
   return(jeu,jouer) #retour au menu#
