@@ -5,7 +5,7 @@ from random import randint
 import time
 import os
 from obstacles import*
-#test
+#test1
 
 def notice(jeu,jouer):
 
