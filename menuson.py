@@ -8,7 +8,6 @@ import os
 def menuson(jeu,jouer,musique):
 
     pygame.font.init()
-    pygame.init()
 
     fenetre=pygame.display.set_mode((800,600)) #on initialise la fenêtre
 
