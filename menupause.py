@@ -32,11 +32,11 @@ def menupause(continuer,jouer,jeu,points,delai):
   couleur=[blanc,blanc,blanc]
   
   fenetre= pygame.display.set_mode((800,600)) #ouverture d'une fenêtre de taille 800*600#
-  font= pygame.font.SysFont("police.ttf",85, bold=True, italic=False) #caractéristiques des objets de type font#
+  font= pygame.font.SysFont("Arcade.ttf",85, bold=True, italic=False) #caractéristiques des objets de type font#
   titre=font.render("Game Paused",0,blanc) #titre possédant les caractéristiques de font#
 
-  font1=pygame.font.SysFont("police.ttf",40, bold=False, italic=False) #caractéristiques des objets de type font1#
-  font2=pygame.font.SysFont("police.ttf",40, bold=False, italic=True) #caractéristiques des objets de type font2#
+  font1=pygame.font.SysFont("Bungee-Regular.ttf",40, bold=False, italic=False) #caractéristiques des objets de type font1#
+  font2=pygame.font.SysFont("Bungee-Regular.ttf",40, bold=False, italic=True) #caractéristiques des objets de type font2#
 
   soustitres=["Reprendre","Menu","Quitter"] #création d'une liste contenant le texte des sous titres#
   
@@ -48,8 +48,6 @@ def menupause(continuer,jouer,jeu,points,delai):
   pause = True #pour la boucle du menu#
   l=-1 #rang du sous titre de la liste actuellement affiché#
   delai=0 #temps passé dans le menu de pause#
-  intervalle=0
-  numero_fond=0
 
   while pause:
 
