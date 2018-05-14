@@ -39,10 +39,10 @@ def menu_perdu(continuer,jouer,jeu,points):
   couleur=[blanc,blanc,blanc]
   clignote=[rouge,jaune]
 
-  font= pygame.font.SysFont("police.ttf",85, bold=True, italic=False) #caractéristiques d'un objet de type font#
+  font= pygame.font.SysFont("arcade.ttf",85, bold=True, italic=False) #caractéristiques d'un objet de type font#
   titre= font.render("Game Over",0,blanc) #titre possédant les caractéristiques de font#
-  font1=pygame.font.SysFont("police.ttf",40, bold=False, italic=False) #caractéristiques d'un objet de type font1#
-  font2=pygame.font.SysFont("police.ttf",40, bold=False, italic=True) #caractéristiques d'un objet de type font2#
+  font1=pygame.font.SysFont("Bungee-Regular.ttf",40, bold=False, italic=False) #caractéristiques d'un objet de type font1#
+  font2=pygame.font.SysFont("Bungee-Regular.ttf",40, bold=False, italic=True) #caractéristiques d'un objet de type font2#
 
   titre= font.render("Game Over",0,blanc) #texte "Game over" possédant les caractéristiques de font et la couleur blanche#
 
@@ -92,7 +92,6 @@ def menu_perdu(continuer,jouer,jeu,points):
         if event.type == pygame.QUIT: #quitter#
             jouer=0 #quitter la boucle principale#
             continuer=0 #quitter la boucle du jeu#
-            return(continuer,jouer,jeu,score) #renvoie les variables au jeu en cours#
 
         elif event.type== pygame.KEYDOWN: #touche pressée#
 
