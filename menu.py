@@ -10,15 +10,20 @@ import time
 
 def menu(jeu,jouer):
 
+    pygame.mixer.init()
+
     fenetre= pygame.display.set_mode((800,600)) #ouverture d'une fenêtre de dimensions 800*600#
 
-    fond1=pygame.image.load ("image/menu.jpg")   #chargement du premier fond#
+    fond1=pygame.image.load ("image/vague 1.jpg")   #chargement du premier fond#
     fond1=pygame.transform.scale(fond1,(800,600)) #adaptation de la taille du fond à la fenêtre#
 
-    fond2=pygame.image.load ("image/menu.jpg") #chargement du deuxième fond#
+    fond2=pygame.image.load ("image/vague 2.jpg") #chargement du deuxième fond#
     fond2=pygame.transform.scale(fond2,(800,600))
 
-    fonds=[fond1,fond2]
+    fond3=pygame.image.load ("image/vague 3.jpg") #chargement du deuxième fond#
+    fond3=pygame.transform.scale(fond3,(800,600))
+
+    fonds=[fond1,fond2,fond3]
 
     rouge=(200,0,0) #RGB pour la couleur rouge voulue#
     vert=(0,200,0) #RGB pour la couleur verte voulue#
@@ -31,6 +36,9 @@ def menu(jeu,jouer):
     message = font1.render("Appuyez sur une touche du clavier",0,vert)
 
     soustitres=["Record","Son","Notice","Quitter"] #liste contenant les sous titres#
+
+    vague=pygame.mixer.Sound("vague.wav")
+    pygame.mixer.Channel(0).play(vague,-1)
 
     couleur_gauche=[rouge,rouge,rouge,rouge]
     couleur_rg=rouge
@@ -62,9 +70,9 @@ def menu(jeu,jouer):
                     var=var-1
             horloge = int(time.clock())
 
-        if intervalle==200: #si l'intervalle atteint 200 on change le fond#
+        if intervalle==90: #si l'intervalle atteint 200 on change le fond#
             intervalle=0  #réinitialisation#
-            if numero_fond==1:
+            if numero_fond==2:
                 numero_fond=0  #retour au premier fond#
             else:
                 numero_fond=numero_fond+1 #fond suivant#
@@ -110,7 +118,8 @@ def menu(jeu,jouer):
                 couleur_mode1=bleucyan
                 couleur_mode2=rouge
                 r_gauche=1 #le rectangle gauche est sélectionné#
-                r_droite=0 #le rectangle droit n'est pas sélectionné#          
+                r_droite=0 #le rectangle droit n'est pas sélectionné#    
+                k=-1      
 
             if event.key == pygame.K_RIGHT: #flèche droite#
                 couleur_gauche=[rouge,rouge,rouge,rouge]
@@ -122,6 +131,7 @@ def menu(jeu,jouer):
                 fenetre.blit(mode2,(550,300))
                 r_gauche=0 #rectangle gauche non sélectionné#
                 r_droite=1 #rectangle droit sélectionné#
+                k=-1
 
             if event.key==pygame.K_DOWN:
                 couleur_rd=rouge
@@ -177,5 +187,6 @@ def menu(jeu,jouer):
                 jeu=0 #pas de jeu sélectionné#
                 jouer=0 #quitter la boucle principale#
                 menu=False #quitte la boucle du menu#
-
+                
+    pygame.mixer.Channel(0).stop()
     return(jeu,jouer) #renvoie à la fonction principale les variables#
