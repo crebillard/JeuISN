@@ -13,7 +13,7 @@ from menuperdu import*
 def jeu2(jouer,jeu,score):
 
   """Chargement de la fenêtre, du fond et des images"""
-
+  pygame.mixer.pre_init(44100,-16,2, 1024) 
   pygame.font.init()
   fenetre=pygame.display.set_mode((800,600)) #ouverture d'une fenêtre de 800*600#
 
@@ -91,8 +91,10 @@ def jeu2(jouer,jeu,score):
   present1=0 #pas de pièce initialement#
   
   pygame.mixer.init() #initialisation du module gérant la musique#
-  pygame.mixer.music.load("jeu.mp3") 
-  pygame.mixer.music.play(loops=1,start=0.0)
+  musique=pygame.mixer.Sound("jeu.wav")
+  pas=pygame.mixer.Sound("bruit pas.wav")
+  collecter=pygame.mixer.Sound("coin.wav")
+  pygame.mixer.Channel(0).play(musique,-1)
 
   '''génération du premier obstacle'''
 
@@ -172,6 +174,7 @@ def jeu2(jouer,jeu,score):
     if crash1==1: #collision#
       position_piece[0]=-20 #retirer la pièce de l'écran#
       score_piece=score_piece+10 #augmentation du score#
+      pygame.mixer.Channel(2).play(collecter,0)
 
 
     for event in pygame.event.get(): #vérification des évènements#
@@ -183,27 +186,31 @@ def jeu2(jouer,jeu,score):
       if event.type==KEYDOWN: #touche pressée#
 
         if event.key==K_UP and position_perso[1]>=220: #flèche du haut#
-            position_perso=haut(position_perso) #mouvement vers le haut du personnage#                  
+            position_perso=haut(position_perso) #mouvement vers le haut du personnage#  
+            pygame.mixer.Channel(1).play(pas,0)                
       
         if event.key==K_DOWN and position_perso[1]<337.5:                   
-            position_perso=bas(position_perso) #déplacement vers le bas du personnage#               
+            position_perso=bas(position_perso) #déplacement vers le bas du personnage#     
+            pygame.mixer.Channel(1).play(pas,0)          
            
         if event.key==K_RIGHT and position_perso[0]<=768: #flèche de droite : déplacement#
           position_perso=droite(position_perso) #déplacement avec la fonction droite#
           position_fond,position_fond1,position_fond2=defilement_fond_gauche(position_fond,position_fond1,position_fond2) #défilement du fond vers la gauche#
+          pygame.mixer.Channel(1).play(pas,0)
 
         if event.key==K_LEFT and position_perso[0]>=0: #flèche de gauche: déplacement#
           position_perso=gauche(position_perso) #déplacement vers la gauche#
           position_fond,position_fond1,position_fond2=defilement_fond_droite(position_fond,position_fond1,position_fond2) #défilement du fond vers la droite#
+          pygame.mixer.Channel(1).play(pas,0)
 
         if event.key==K_ESCAPE: #échap: ouverture du menu pause#
           fin=time.clock() #temps depuis le lancement du programme#
           score=int(round(fin-debut-duree_pause))+score_piece #calcul du score#
-          pygame.mixer.music.pause() #pause de la musique#
+          pygame.mixer.Channel(0).pause() #pause de la musique#
           pygame.key.set_repeat(0,0) 
           continuer,jouer,jeu,delai=menupause(continuer,jouer,jeu,score,delai) #ouverture du menu pause#
           pygame.key.set_repeat(1,20) 
-          pygame.mixer.music.unpause() #remet la musique#
+          pygame.mixer.Channel(0).unpause() #remet la musique#
           duree_pause=duree_pause+delai #calcul du temps total passé en pause#
 
   """sortie de la boucle while"""
@@ -212,11 +219,11 @@ def jeu2(jouer,jeu,score):
     fin=time.clock() 
     score=int(round(fin-debut-duree_pause))+score_piece #calcul du score#
     pygame.key.set_repeat(0,0)
-    pygame.mixer.music.stop()
+    pygame.mixer.Channel(0).stop() #stopper la musique#
     continuer,jouer,jeu,score=menu_perdu(continuer,jouer,jeu,score) #menu perdu#
     pygame.key.set_repeat(1,20)
 
-  pygame.mixer.music.stop() #stopper la musique#
+  pygame.mixer.Channel(0).stop() #stopper la musique#
   pygame.key.set_repeat(0,0)
   pygame.mixer.quit()
   return(jouer,jeu,score) #renvoie à la fonction principale les varaibles#
