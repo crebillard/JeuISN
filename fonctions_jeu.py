@@ -50,20 +50,22 @@ def presence_obstacle(position,present):
 def vitesse(pixels,score):
     if score<30: #score bas#
       pixels=3 #vitesse basse#
-    if score>40:
+    if score>30:
       pixels=4
-    if score>60:
+    if score>50:
       pixels=5
-    if score>100:
+    if score>80:
       pixels=6
-    if score>150:
+    if score>100:
       pixels=7
-    if score>180:
+    if score>150:
       pixels=8
-    if score>200:
+    if score>180:
       pixels=9
-    if score>250: #score haut#
-      pixels=10 #vitesse maximale#  
+    if score>210:
+      pixels=10 
+    if score>300:  #score haut#
+      pixels=11 #vitesse maximale#
     return(pixels)
 
 """fonction vérifiant la collision avec l'obstacle et la pièce"""
