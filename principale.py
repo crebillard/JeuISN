@@ -27,10 +27,10 @@ while jouer: #boucle faisant tourner le programme#
     jeu,jouer=menu(jeu,jouer) #ouverture du menu#
 
   if jeu==1: #jeu 1#
-    jouer,jeu,score=jeu1(jouer,jeu,score) #uverture du jeu 1#
+    jouer,jeu,score=jeu1(jouer,jeu,score,musique) #ouverture du jeu 1#
 
   if jeu==2:
-    jouer,jeu,score=jeu2(jouer,jeu,score)
+    jouer,jeu,score=jeu2(jouer,jeu,score,musique)
 
   if jeu=="Record": #record sélectionné#
   	jeu,jouer=score1(jeu,jouer) #ouverture de la fenêtre de score#
