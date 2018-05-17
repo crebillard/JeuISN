@@ -225,5 +225,4 @@ def jeu2(jouer,jeu,score):
 
   pygame.mixer.Channel(0).stop() #stopper la musique#
   pygame.key.set_repeat(0,0)
-  pygame.mixer.quit()
   return(jouer,jeu,score) #renvoie à la fonction principale les varaibles#
