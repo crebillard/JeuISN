@@ -91,10 +91,16 @@ def jeu2(jouer,jeu,score):
   present1=0 #pas de pièce initialement#
   
   pygame.mixer.init() #initialisation du module gérant la musique#
-  musique=pygame.mixer.Sound("jeu.wav")
+  if musique==0 or musique=="joyeux":
+    son=pygame.mixer.Sound("jeu.wav")
+  elif musique=="relaxant":
+    son=pygame.mixer.Sound("vague.wav")
+
   pas=pygame.mixer.Sound("bruit pas.wav")
   collecter=pygame.mixer.Sound("coin.wav")
-  pygame.mixer.Channel(0).play(musique,-1)
+
+  if not(musique=="off"):
+    pygame.mixer.Channel(0).play(son,-1)
 
   '''génération du premier obstacle'''
 
