@@ -74,13 +74,13 @@ def menu_perdu(continuer,jouer,jeu,points):
     fenetre.blit(record,(30,65)) #affichage de "record"#
     fenetre.blit(valeur_record,(175,65)) #affichage de la valeur du record#
 
-    if nouveau_record==1:
+    if nouveau_record==1: #nouveau record#
 
-      fenetre.blit(new,(30,100))
-      fin=int(time.clock()-debut)
-      if fin>=0.5:
-        debut=int(time.clock())
-        if rang_couleur==0:
+      fenetre.blit(new,(30,100)) #afficher le message de nouveau record#
+      fin=int(time.clock()-debut) #mesure du temps#
+      if fin>=0.5: #toutes les demis secondes#
+        debut=int(time.clock()) 
+        if rang_couleur==0: #changement de la couleur du message#
           rang_couleur=1
         else:
           rang_couleur=0
@@ -92,6 +92,7 @@ def menu_perdu(continuer,jouer,jeu,points):
         if event.type == pygame.QUIT: #quitter#
             jouer=0 #quitter la boucle principale#
             continuer=0 #quitter la boucle du jeu#
+            return(continuer,jouer,jeu,points)
 
         elif event.type== pygame.KEYDOWN: #touche pressée#
 
