@@ -12,7 +12,7 @@ from menuperdu import*
 
 """fonction de jeu prenant pour paramètres jouer, jeu et score"""
 
-def jeu1(jouer,jeu,score):
+def jeu1(jouer,jeu,score,musique):
 
   """Chargement de la fenêtre, du fond et des images"""
   pygame.mixer.pre_init(44100,-16,2, 1024) 
@@ -66,13 +66,13 @@ def jeu1(jouer,jeu,score):
   position_piece=pygame.Rect(400,580,15,15) #création d'un rectangle contenant ses coordonnées#
   position_piece=piece_spawn(position_piece,1) #défilement d'une première pièce#
 
-  vie=pygame.image.load("image/vie.jpg") 
+  vie=pygame.image.load("image/vie.jpg") #chargement de la vie#
   vie=pygame.transform.scale(vie,(30,30))
   vie.set_colorkey((252,252,252))
-  position_vie=pygame.Rect(10,10,30,30)
-  vie1=vie
-  vies=[vie,vie1]
-  position_vies=[position_vie,(position_vie[0]+40,position_vie[1])]
+  position_vie=pygame.Rect(10,10,30,30) #coornonnées#
+  vie1=vie #deuxième vie, identique à la première#
+  vies=[vie,vie1] #liste contenant les deux vies#
+  position_vies=[position_vie,(position_vie[0]+40,position_vie[1])] #liste contenant les positions des vies#
 
   compte=pygame.font.SysFont("police.ttf", 400, bold= True, italic= False) #création d'un objet de type font pour le compte à rebours#
 
@@ -104,17 +104,18 @@ def jeu1(jouer,jeu,score):
   crash1=0 #test de collision avec la pièce#
   present1=0 #pas de pièce initialement#
   
-  pygame.mixer.init() #initialisation du module gérant la musique#
-  if musique==0 or musique=="joyeux":
-    son=pygame.mixer.Sound("jeu.wav")
+  pygame.mixer.init()#initialisation du module gérant la musique#
+  
+  if musique==0 or musique=="joyeux": 
+    son=pygame.mixer.Sound("jeu.wav") #chargement de la musique "joyeuse"#
   elif musique=="relaxant":
-    son=pygame.mixer.Sound("vague.wav")
+    son=pygame.mixer.Sound("vague.wav") #chargement de la musique "relaxante"#
 
-  pas=pygame.mixer.Sound("bruit pas.wav")
-  collecter=pygame.mixer.Sound("coin.wav")
+  pas=pygame.mixer.Sound("bruit pas.wav") #chargement du bruit de pas#
+  collecter=pygame.mixer.Sound("coin.wav") #chargement du son de récupération d'une pièce#
 
-  if not(musique=="off"):
-    pygame.mixer.Channel(0).play(son,-1)
+  if not(musique=="off"): #si le joueur n'a pas choisi off#
+    pygame.mixer.Channel(0).play(son,-1) #joue la musique en boucle#
 
   '''génération du premier obstacle'''
 
@@ -147,13 +148,13 @@ def jeu1(jouer,jeu,score):
     """à chaque entrée dans la boucle, affichage des images à leur position actuelle"""
 
     pygame.display.flip() #rafraichissement de l'écran#
-    fenetre.blit(fonds[1],position_fond1)
+    fenetre.blit(fonds[1],position_fond1) #affichage des images du fond#
     fenetre.blit(fonds[2],position_fond2)
     fenetre.blit(fonds[0],position_fond)
-    fenetre.blit(perso,position_perso)
-    fenetre.blit(obstacle,position_obstacle)
-    fenetre.blit(piece,position_piece)
-    for loop in range(nb_vies):
+    fenetre.blit(perso,position_perso) #affichage du personnage#
+    fenetre.blit(obstacle,position_obstacle) #affichage de l'obstacle#
+    fenetre.blit(piece,position_piece) #affichage de la pièce#
+    for loop in range(nb_vies): #affichage des vies#
       fenetre.blit(vies[loop],position_vies[loop])
 
     '''Obstacle : présence, sélection, défilement et collision'''
@@ -163,7 +164,7 @@ def jeu1(jouer,jeu,score):
     if present==0: #pas d'obstacle#
         
       obstacle,position_obstacle,type_obstacle=creation_obstacle(obstacle_bas,position_obstacle_bas,obstacle_haut,position_obstacle_haut,obstacle,position_obstacle,type_obstacle) #choix aléatoire d'un obstacle#
-      position_obstacle=spawn(position_obstacle,type_obstacle) #affcihage d'un obstacle à droite de l'écran#
+      position_obstacle=spawn(position_obstacle,type_obstacle) #affichage d'un obstacle à droite de l'écran#
       pixels=vitesse(pixels,score) #sélection aléatoire d'une vitesse de défilement de l'obstacle#
       present=1 #obstacle présent#
         
@@ -178,8 +179,8 @@ def jeu1(jouer,jeu,score):
       pygame.display.flip()
       pygame.time.wait(1000) #attente#
       position_obstacle=pygame.Rect(-200,0,25,25) #retirer l'obstacle de l'écran#
-      perso=perso1 
-      nb_vies=nb_vies-1
+      perso=perso1 #changement du personnage affiché#
+      nb_vies=nb_vies-1 #vie perdue#
       if nb_vies==0:
         continuer=0  #quitter la boucle#
         perdu=1 #le joueur a perdu#      
@@ -198,10 +199,9 @@ def jeu1(jouer,jeu,score):
     crash1=crash_test(position_piece,position_perso,crash1) #vérification de la collision avec une pièce#
     
     if crash1==1:	#collision#
-      pygame.mixer.Channel(2).play(collecter,0)
+      pygame.mixer.Channel(2).play(collecter,0) #son de récupération de pièce#
       position_piece[0]=-40 #retirer la pièce de l'écran#
       score_piece=score_piece+10 #augmentation du score#
-
 
     for event in pygame.event.get(): #vérification des évènements#
 
@@ -213,22 +213,21 @@ def jeu1(jouer,jeu,score):
 
         if event.key==K_UP and position_perso[1]>=220: #flèche du haut#
             position_perso=haut(position_perso) #mouvement vers le haut du personnage#    
-            pygame.mixer.Channel(1).play(pas,0)
+            pygame.mixer.Channel(1).play(pas,0) #bruit de pas#
 
-      
-        if event.key==K_DOWN and position_perso[1]<338:                   
+        if event.key==K_DOWN and position_perso[1]<338:     #flèche du bas#             
             position_perso=bas(position_perso) #déplacement vers le bas du personnage#     
-            pygame.mixer.Channel(1).play(pas,0)          
+            pygame.mixer.Channel(1).play(pas,0)       #bruit de pas#   
            
         if event.key==K_RIGHT and position_perso[0]<=768: #flèche de droite : déplacement#
           position_perso=droite(position_perso) #déplacement avec la fonction droite#
           position_fond,position_fond1,position_fond2=defilement_fond_gauche(position_fond,position_fond1,position_fond2) #défilement du fond vers la gauche#
-          pygame.mixer.Channel(1).play(pas,0)
+          pygame.mixer.Channel(1).play(pas,0) #bruit de pas#
 
         if event.key==K_LEFT and position_perso[0]>=0: #flèche de gauche: déplacement#
           position_perso=gauche(position_perso) #déplacement vers la gauche#
           position_fond,position_fond1,position_fond2=defilement_fond_droite(position_fond,position_fond1,position_fond2) #défilement du fond vers la droite#
-          pygame.mixer.Channel(1).play(pas,0)
+          pygame.mixer.Channel(1).play(pas,0) #bruit de pas#
 
         if event.key==K_ESCAPE: #échap: ouverture du menu pause#
           fin=time.clock() #temps depuis le lancement du programme#
@@ -243,16 +242,16 @@ def jeu1(jouer,jeu,score):
   """sortie de la boucle while"""
 
   if perdu==1: #le joueur a perdu#
-    fin=time.clock() 
+    fin=time.clock() #temps depuis l'exécution du programme#
     score=int(round(fin-debut-duree_pause))+score_piece #calcul du score#
     pygame.key.set_repeat(0,0)
-    pygame.mixer.Channel(0).stop()
+    pygame.mixer.Channel(0).stop() #stopper la musique#
     continuer,jouer,jeu,score=menu_perdu(continuer,jouer,jeu,score) #menu perdu#
     pygame.key.set_repeat(1,20)
 
   pygame.mixer.Channel(0).stop() #stopper la musique#
   pygame.key.set_repeat(0,0)
-  return(jouer,jeu,score) #renvoie à la fonction principale les varaibles#
+  return(jouer,jeu,score) #renvoie à la fonction principale les variables#
 
   
   
