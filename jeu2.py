@@ -10,7 +10,7 @@ from menuperdu import*
 
 """fonction de jeu prenant pour paramètres jouer, jeu et score"""
 
-def jeu2(jouer,jeu,score):
+def jeu2(jouer,jeu,score,musique):
 
   """Chargement de la fenêtre, du fond et des images"""
   pygame.mixer.pre_init(44100,-16,2, 1024) 
@@ -90,17 +90,18 @@ def jeu2(jouer,jeu,score):
   crash1=0 #test de collision avec la pièce#
   present1=0 #pas de pièce initialement#
   
-  pygame.mixer.init() #initialisation du module gérant la musique#
-  if musique==0 or musique=="joyeux":
-    son=pygame.mixer.Sound("jeu.wav")
+  pygame.mixer.init()#initialisation du module gérant la musique#
+  
+  if musique==0 or musique=="joyeux": 
+    son=pygame.mixer.Sound("jeu.wav") #chargement de la musique "joyeuse"#
   elif musique=="relaxant":
-    son=pygame.mixer.Sound("vague.wav")
+    son=pygame.mixer.Sound("vague.wav") #chargement de la musique "relaxante"#
 
-  pas=pygame.mixer.Sound("bruit pas.wav")
-  collecter=pygame.mixer.Sound("coin.wav")
+  pas=pygame.mixer.Sound("bruit pas.wav") #chargement du bruit de pas#
+  collecter=pygame.mixer.Sound("coin.wav") #chargement du son de récupération d'une pièce#
 
-  if not(musique=="off"):
-    pygame.mixer.Channel(0).play(son,-1)
+  if not(musique=="off"): #si le joueur n'a pas choisi off#
+    pygame.mixer.Channel(0).play(son,-1) #joue la musique en boucle#
 
   '''génération du premier obstacle'''
 
@@ -231,4 +232,4 @@ def jeu2(jouer,jeu,score):
 
   pygame.mixer.Channel(0).stop() #stopper la musique#
   pygame.key.set_repeat(0,0)
-  return(jouer,jeu,score) #renvoie à la fonction principale les varaibles#
+  return(jouer,jeu,score) #renvoie à la fonction principale les variables#
