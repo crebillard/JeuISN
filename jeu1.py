@@ -62,8 +62,7 @@ def jeu1(jouer,jeu,score,musique):
 
   piece=pygame.image.load("Pokeball.png") #chargement de la pièce#
   piece=pygame.transform.scale(piece,(30,30)) #modification de sa taille#
-  position_piece=pygame.Rect(400,580,15,15) #création d'un rectangle contenant ses coordonnées#
-  position_piece=piece_spawn(position_piece,1) #défilement d'une première pièce#
+  position_piece=pygame.Rect(-20,580,15,15) #création d'un rectangle contenant ses coordonnées#
 
   vie=pygame.image.load("vie.jpg") #chargement de la vie#
   vie=pygame.transform.scale(vie,(30,30))
