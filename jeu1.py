@@ -39,7 +39,23 @@ def jeu1(jouer,jeu,score,musique):
   obstacle_bas2=pygame.image.load("Raichu.png") #chargement du deuxième obstacle bas#
   obstacle_bas2=pygame.transform.scale(obstacle_bas2,(80,80))
 
-  obstacle_bas=[obstacle_bas1,obstacle_bas2] #création d'une liste contenant les obstacles bas#
+  obstacle_bas3=pygame.image.load("Bulbizarre.png") #chargement du premier obstacle bas#
+  obstacle_bas3.set_colorkey((255,255,255))
+  obstacle_bas3=pygame.transform.scale(obstacle_bas3,(80,80)) #modification de sa taille#
+
+  obstacle_bas4=pygame.image.load("Mewtou.png") #chargement du premier obstacle bas#
+  obstacle_bas4.set_colorkey((255,255,255))
+  obstacle_bas4=pygame.transform.scale(obstacle_bas4,(80,80)) #modification de sa taille#
+
+  obstacle_bas5=pygame.image.load("Salameche.png") #chargement du premier obstacle bas#
+  obstacle_bas5.set_colorkey((255,255,255))
+  obstacle_bas5=pygame.transform.scale(obstacle_bas5,(80,80)) #modification de sa taille#
+
+  obstacle_bas6=pygame.image.load("Pikachu.png") #chargement du premier obstacle bas#
+  obstacle_bas6.set_colorkey((255,255,255))
+  obstacle_bas6=pygame.transform.scale(obstacle_bas6,(80,80)) #modification de sa taille#
+
+  obstacle_bas=[obstacle_bas1,obstacle_bas2,obstacle_bas3,obstacle_bas4,obstacle_bas5,obstacle_bas6] #création d'une liste contenant les obstacles bas#
   position_obstacle_bas=pygame.Rect(730,320,40,40) #création d'un rectangle contenant les coordonnées de l'obstacle bas#
  
   obstacle_haut1=pygame.image.load("Dracaufeu.png")  #chargement du premier obstacle haut#
@@ -61,12 +77,13 @@ def jeu1(jouer,jeu,score,musique):
   perso1.set_colorkey((255,255,255))
 
   piece=pygame.image.load("Pokeball.png") #chargement de la pièce#
+  piece.set_colorkey((255,255,255))
   piece=pygame.transform.scale(piece,(30,30)) #modification de sa taille#
   position_piece=pygame.Rect(-20,580,15,15) #création d'un rectangle contenant ses coordonnées#
 
-  vie=pygame.image.load("vie.jpg") #chargement de la vie#
-  vie=pygame.transform.scale(vie,(30,30))
-  vie.set_colorkey((252,252,252))
+  vie=pygame.image.load("vie.png") #chargement de la vie#
+  vie=pygame.transform.scale(vie,(32,25))
+  vie.set_colorkey((255,255,255))
   position_vie=pygame.Rect(10,10,30,30) #coornonnées#
   vie1=vie #deuxième vie, identique à la première#
   vies=[vie,vie1] #liste contenant les deux vies#
