@@ -26,17 +26,16 @@ def menupause(continuer,jouer,jeu,points,delai):
   meilleur_score=classement.readline() #lit le fichier#
   classement.close() #ferme le fichier#
 
-  
   blanc=(200,200,200) #RGB de la couleur blanche voulue#
   rouge=(200,0,0) #RGB de la couleur rouge voulue#
   couleur=[blanc,blanc,blanc]
   
   fenetre= pygame.display.set_mode((800,600)) #ouverture d'une fenêtre de taille 800*600#
-  font= pygame.font.SysFont("Arcade.ttf",85, bold=True, italic=False) #caractéristiques des objets de type font#
+  font= pygame.font.Font("Arcade.ttf",85, bold=True, italic=False) #caractéristiques des objets de type font#
   titre=font.render("Game Paused",0,blanc) #titre possédant les caractéristiques de font#
 
-  font1=pygame.font.SysFont("Bungee-Regular.ttf",40, bold=False, italic=False) #caractéristiques des objets de type font1#
-  font2=pygame.font.SysFont("Bungee-Regular.ttf",40, bold=False, italic=True) #caractéristiques des objets de type font2#
+  font1=pygame.font.Font("Bungee-Regular.ttf",30, bold=False, italic=False) #caractéristiques des objets de type font1#
+  font2=pygame.font.Font("Bungee-Regular.ttf",30, bold=False, italic=True) #caractéristiques des objets de type font2#
 
   soustitres=["Reprendre","Menu","Quitter"] #création d'une liste contenant le texte des sous titres#
   
@@ -58,11 +57,10 @@ def menupause(continuer,jouer,jeu,points,delai):
         fenetre.blit(soustitre1,(350,260)) #affichage des sous titres#
         fenetre.blit(soustitre2,(350,295))
         fenetre.blit(soustitre3,(350,330))
-
         fenetre.blit(score,(30,30)) #affichage de "score"#
-        fenetre.blit(score_actuel,(155,30)) #affichage de la valeur du score#
+        fenetre.blit(score_actuel,(180,30)) #affichage de la valeur du score#
         fenetre.blit(record,(30,65)) #affichage de "record"#
-        fenetre.blit(record_valeur,(175,65)) #affichage de la valeur du record#
+        fenetre.blit(record_valeur,(190,65)) #affichage de la valeur du record#
 
         pygame.display.flip() #rafraichissiment de l'écran à chaque tour de la boucle# 
 
