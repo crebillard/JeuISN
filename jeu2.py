@@ -56,8 +56,7 @@ def jeu2(jouer,jeu,score,musique):
 
   piece=pygame.image.load("Pokeball.png") #chargement de la pièce#
   piece=pygame.transform.scale(piece,(30,30)) #modification de sa taille#
-  position_piece=pygame.Rect(400,580,15,15) #création d'un rectangle contenant ses coordonnées#
-  position_piece=piece_spawn(position_piece,1) #défilement d'une première pièce#
+  position_piece=pygame.Rect(-20,580,15,15) #création d'un rectangle contenant ses coordonnées#
 
   compte=pygame.font.Font("arcade.ttf", 400, bold= True, italic= False) #création d'un objet de type font pour le compte à rebours#
   font=pygame.font.Font("Bungee-Regular.ttf",30,bold=False,italic=True)
