@@ -1,5 +1,3 @@
-import pygame #chargement des bibliothèques#
-from pygame.locals import*
 import random
 from random import randint
 import time
@@ -18,9 +16,9 @@ def notice(jeu,jouer):
   while notice : #tant que notice vaut True#
 
     pygame.display.flip() #rafraichissement de l'écran à chaque entrée dans la boucle#
-    taillefont=22 
-    font = pygame.font.SysFont("comicsansms",85, bold=True, italic=False) #on définit la police du titre
-    font1 = pygame.font.SysFont("comicsansms",taillefont, bold=False, italic=False) #on définit la police du paragraphe
+    taillefont=19 
+    font = pygame.font.Font("Bungee-Regular.ttf",85, bold=True, italic=False) #on définit la police du titre
+    font1 = pygame.font.Font("Bungee-Regular.ttf",taillefont, bold=False, italic=False) #on définit la police du paragraphe
     titre = font.render("Notice",0,(200,200,200)) #on applique la police au titre
 
     fenetre.blit(titre,(290,80)) # on affiche le titre dans notre fenêtre
