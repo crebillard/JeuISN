@@ -30,7 +30,7 @@ def creation_obstacle(obstacle_bas,position_obstacle_bas,obstacle_haut,position_
 def spawn(position_obstacle,type_obstacle): #affichage d'un obstacle à sa position d'origine#
     if type_obstacle==1: #obstacle bas#
         y=randint(270,320)
-    else: #obstacle ahut#
+    else: #obstacle haut#
         y=randint(220,280)
     rect=(750,y,40,40) 
     return pygame.Rect(rect)
@@ -49,7 +49,7 @@ def presence_obstacle(position,present):
 
 def vitesse(pixels,score):
     if score<30: #score bas#
-      pixels=3 #vitesse basse#
+      pixels=2 #vitesse basse#
     if score>30:
       pixels=4
     if score>80:
@@ -94,7 +94,7 @@ def presence_piece(position,present):
 
 def piece_spawn(position_piece,type_obstacle):
     if type_obstacle==1: #obstacle bas#
-      y=randint(220,280) #affichage de la pièce en haut#
+      y=randint(220,260) #affichage de la pièce en haut#
     else: #obstacle haut#
       y=randint(270,340)  #affiche de la pièce en bas#
     return pygame.Rect((780,y,15,15))
