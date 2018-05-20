@@ -14,16 +14,15 @@ def jeu2(jouer,jeu,score,musique):
 
   """Chargement de la fenêtre, du fond et des images"""
   pygame.mixer.pre_init(44100,-16,2, 1024) 
-  pygame.font.init()
   fenetre=pygame.display.set_mode((800,600)) #ouverture d'une fenêtre de 800*600#
 
-  fond=pygame.image.load ("image/fond3.jpg")   #chargement du premier fond#
+  fond=pygame.image.load ("fond3.jpg")   #chargement du premier fond#
   fond=pygame.transform.scale(fond,(800,600)) #adaptation de la taille du fond à la fenêtre#
 
-  fond1=pygame.image.load ("image/fond2.jpg") #chargement du deuxième fond#
+  fond1=pygame.image.load ("fond2.jpg") #chargement du deuxième fond#
   fond1=pygame.transform.scale(fond1,(800,600))
 
-  fond2=pygame.image.load ("image/fond1.jpg") #chargement du troisième fond#
+  fond2=pygame.image.load ("fond1.jpg") #chargement du troisième fond#
   fond2=pygame.transform.scale(fond2,(800,600))
 
   position_fond=pygame.Rect(395,0,800,600) #coordonnées des fonds stockées dans des rectangles#
@@ -32,35 +31,35 @@ def jeu2(jouer,jeu,score,musique):
 
   fonds=[fond,fond1,fond2] #création d'une liste contenant les fonds#
 
-  obstacle_bas1=pygame.image.load("image/Tortank.png") #chargement du premier obstacle bas#
+  obstacle_bas1=pygame.image.load("Tortank.png") #chargement du premier obstacle bas#
   obstacle_bas1=pygame.transform.scale(obstacle_bas1,(80,80)) #modification de sa taille#
 
-  obstacle_bas2=pygame.image.load("image/Raichu.png") #chargement du deuxième obstacle bas#
+  obstacle_bas2=pygame.image.load("Raichu.png") #chargement du deuxième obstacle bas#
   obstacle_bas2=pygame.transform.scale(obstacle_bas2,(80,80))
 
   obstacle_bas=[obstacle_bas1,obstacle_bas2] #création d'une liste contenant les obstacles bas#
   position_obstacle_bas=pygame.Rect(730,320,40,40) #création d'un rectangle contenant les coordonnées de l'obstacle bas#
  
-  obstacle_haut1=pygame.image.load("image/Dracaufeu.png")  #chargement du premier obstacle haut#
+  obstacle_haut1=pygame.image.load("Dracaufeu.png")  #chargement du premier obstacle haut#
   obstacle_haut1=pygame.transform.scale(obstacle_haut1,(80,80)) #création d'un rectangle contenant les coordonnées afin de faciliter les manipulations des coordonnées#
 
-  obstacle_haut2=pygame.image.load("image/Abra.png")  #chargement du deuxième obstacle haut#
+  obstacle_haut2=pygame.image.load("Abra.png")  #chargement du deuxième obstacle haut#
   obstacle_haut2=pygame.transform.scale(obstacle_haut2,(80,80))
 
   obstacle_haut=[obstacle_haut1,obstacle_haut2] #création d'une liste contenant les obstacles hauts#
   position_obstacle_haut=pygame.Rect(730,250,40,40) #coordonnées de l'obstacle bas dans un rectangle#
  
-  perso=pygame.image.load("image/perso.png")  #chargement du personnage#
+  perso=pygame.image.load("perso.png")  #chargement du personnage#
   perso=pygame.transform.scale(perso,(50,50)) #modification de sa taille#
   perso.set_colorkey((255,255,255))
   position_perso=pygame.Rect(220,235,25,25) #création d'un rectangle contenant les coordonnées afin de faciliter les manipulations des coordonnées#
 
-  piece=pygame.image.load("image/Pokeball.png") #chargement de la pièce#
+  piece=pygame.image.load("Pokeball.png") #chargement de la pièce#
   piece=pygame.transform.scale(piece,(30,30)) #modification de sa taille#
   position_piece=pygame.Rect(400,580,15,15) #création d'un rectangle contenant ses coordonnées#
   position_piece=piece_spawn(position_piece,1) #défilement d'une première pièce#
 
-  compte=pygame.font.SysFont("police.ttf", 400, bold= True, italic= False) #création d'un objet de type font pour le compte à rebours#
+  compte=pygame.font.Font("arcade.ttf", 400, bold= True, italic= False) #création d'un objet de type font pour le compte à rebours#
 
   decompte3=compte.render("3",0,(84,0,255)) #décompte (3,2,1,0) reprenant les caractéristiques de l'objet compte#
   decompte2=compte.render("2",0,(84,0,255))
