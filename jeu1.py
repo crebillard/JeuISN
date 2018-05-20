@@ -74,6 +74,7 @@ def jeu1(jouer,jeu,score,musique):
   position_vies=[position_vie,(position_vie[0]+40,position_vie[1])] #liste contenant les positions des vies#
 
   compte=pygame.font.Font("arcade.ttf", 400, bold= True, italic= False) #création d'un objet de type font pour le compte à rebours#
+  font=pygame.font.Font("Bungee-Regular.ttf",30,bold=False,italic=True)
 
   decompte3=compte.render("3",0,(84,0,255)) #décompte (3,2,1,0) reprenant les caractéristiques de l'objet compte#
   decompte2=compte.render("2",0,(84,0,255))
@@ -143,6 +144,8 @@ def jeu1(jouer,jeu,score,musique):
     """a chaque entrée dans la boucle, mesure du score pour pouvoir l'envoyer aux fonctions"""
     fin=time.clock()
     score=int(round(fin-debut-duree_pause))+score_piece
+    affichage_score=font.render(str(score),0,(255,0,0))
+    fenetre.blit(affichage_score,(700,10))
 
     """à chaque entrée dans la boucle, affichage des images à leur position actuelle"""
 
@@ -198,8 +201,9 @@ def jeu1(jouer,jeu,score,musique):
     crash1=crash_test(position_piece,position_perso,crash1) #vérification de la collision avec une pièce#
     
     if crash1==1:	#collision#
-      pygame.mixer.Channel(2).play(collecter,0) #son de récupération de pièce#
-      position_piece[0]=-40 #retirer la pièce de l'écran#
+      if not(musique=="off"):
+        pygame.mixer.Channel(2).play(collecter,0) #son de récupération de pièce#
+      position_piece[0]=-40 #retirer la pièce de l'écran#      
       score_piece=score_piece+10 #augmentation du score#
 
     for event in pygame.event.get(): #vérification des évènements#
@@ -211,22 +215,26 @@ def jeu1(jouer,jeu,score,musique):
       if event.type==KEYDOWN: #touche pressée#
 
         if event.key==K_UP and position_perso[1]>=220: #flèche du haut#
-            position_perso=haut(position_perso) #mouvement vers le haut du personnage#    
-            pygame.mixer.Channel(1).play(pas,0) #bruit de pas#
+            position_perso=haut(position_perso) #mouvement vers le haut du personnage#  
+            if not(musique=="off"):
+                pygame.mixer.Channel(1).play(pas,0) #bruit de pas#
 
         if event.key==K_DOWN and position_perso[1]<338:     #flèche du bas#             
-            position_perso=bas(position_perso) #déplacement vers le bas du personnage#     
-            pygame.mixer.Channel(1).play(pas,0)       #bruit de pas#   
+            position_perso=bas(position_perso) #déplacement vers le bas du personnage#  
+            if not(musique=="off"):
+                pygame.mixer.Channel(1).play(pas,0)       #bruit de pas#   
            
         if event.key==K_RIGHT and position_perso[0]<=768: #flèche de droite : déplacement#
           position_perso=droite(position_perso) #déplacement avec la fonction droite#
           position_fond,position_fond1,position_fond2=defilement_fond_gauche(position_fond,position_fond1,position_fond2) #défilement du fond vers la gauche#
-          pygame.mixer.Channel(1).play(pas,0) #bruit de pas#
+          if not(musique=="off"):
+              pygame.mixer.Channel(1).play(pas,0) #bruit de pas#
 
         if event.key==K_LEFT and position_perso[0]>=0: #flèche de gauche: déplacement#
           position_perso=gauche(position_perso) #déplacement vers la gauche#
           position_fond,position_fond1,position_fond2=defilement_fond_droite(position_fond,position_fond1,position_fond2) #défilement du fond vers la droite#
-          pygame.mixer.Channel(1).play(pas,0) #bruit de pas#
+          if not(musique=="off"):
+              pygame.mixer.Channel(1).play(pas,0) #bruit de pas#
 
         if event.key==K_ESCAPE: #échap: ouverture du menu pause#
           fin=time.clock() #temps depuis le lancement du programme#
