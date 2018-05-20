@@ -39,10 +39,10 @@ def menu_perdu(continuer,jouer,jeu,points):
   couleur=[blanc,blanc,blanc]
   clignote=[rouge,jaune]
 
-  font= pygame.font.SysFont("arcade.ttf",85, bold=True, italic=False) #caractéristiques d'un objet de type font#
+  font= pygame.font.Font("arcade.ttf",85, bold=True, italic=False) #caractéristiques d'un objet de type font#
   titre= font.render("Game Over",0,blanc) #titre possédant les caractéristiques de font#
-  font1=pygame.font.SysFont("Bungee-Regular.ttf",40, bold=False, italic=False) #caractéristiques d'un objet de type font1#
-  font2=pygame.font.SysFont("Bungee-Regular.ttf",40, bold=False, italic=True) #caractéristiques d'un objet de type font2#
+  font1=pygame.font.Font("Bungee-Regular.ttf",30, bold=False, italic=False) #caractéristiques d'un objet de type font1#
+  font2=pygame.font.Font("Bungee-Regular.ttf",30, bold=False, italic=True) #caractéristiques d'un objet de type font2#
 
   titre= font.render("Game Over",0,blanc) #texte "Game over" possédant les caractéristiques de font et la couleur blanche#
 
@@ -70,9 +70,9 @@ def menu_perdu(continuer,jouer,jeu,points):
     fenetre.blit(soustitre2,(350,295))
     fenetre.blit(soustitre3,(350,330))
     fenetre.blit(score,(30,30)) #affichage de "score"#
-    fenetre.blit(valeur_score,(155,30)) #affichage de la valeur du score#
+    fenetre.blit(valeur_score,(180,30)) #affichage de la valeur du score#
     fenetre.blit(record,(30,65)) #affichage de "record"#
-    fenetre.blit(valeur_record,(175,65)) #affichage de la valeur du record#
+    fenetre.blit(valeur_record,(190,65)) #affichage de la valeur du record#
 
     if nouveau_record==1: #nouveau record#
 
