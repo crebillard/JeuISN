@@ -36,26 +36,30 @@ def jeu1(jouer,jeu,score,musique):
   obstacle_bas1=pygame.image.load("Tortank.png") #chargement du premier obstacle bas#
   obstacle_bas1=pygame.transform.scale(obstacle_bas1,(80,80)) #modification de sa taille#
 
-  obstacle_bas2=pygame.image.load("Raichu.png") #chargement du deuxième obstacle bas#
+  obstacle_bas2=pygame.image.load("Raichu.png") 
   obstacle_bas2=pygame.transform.scale(obstacle_bas2,(80,80))
 
-  obstacle_bas3=pygame.image.load("Bulbizarre.png") #chargement du premier obstacle bas#
+  obstacle_bas3=pygame.image.load("Bulbizarre.png") 
   obstacle_bas3.set_colorkey((255,255,255))
   obstacle_bas3=pygame.transform.scale(obstacle_bas3,(80,80)) #modification de sa taille#
 
-  obstacle_bas4=pygame.image.load("Mewtou.png") #chargement du premier obstacle bas#
+  obstacle_bas4=pygame.image.load("Mewtou.png") 
   obstacle_bas4.set_colorkey((255,255,255))
   obstacle_bas4=pygame.transform.scale(obstacle_bas4,(80,80)) #modification de sa taille#
 
-  obstacle_bas5=pygame.image.load("Salameche.png") #chargement du premier obstacle bas#
+  obstacle_bas5=pygame.image.load("Salameche.png") 
   obstacle_bas5.set_colorkey((255,255,255))
   obstacle_bas5=pygame.transform.scale(obstacle_bas5,(80,80)) #modification de sa taille#
 
-  obstacle_bas6=pygame.image.load("Pikachu.png") #chargement du premier obstacle bas#
+  obstacle_bas6=pygame.image.load("Pikachu.png") 
   obstacle_bas6.set_colorkey((255,255,255))
   obstacle_bas6=pygame.transform.scale(obstacle_bas6,(80,80)) #modification de sa taille#
 
-  obstacle_bas=[obstacle_bas1,obstacle_bas2,obstacle_bas3,obstacle_bas4,obstacle_bas5,obstacle_bas6] #création d'une liste contenant les obstacles bas#
+  obstacle_bas7=pygame.image.load("Carapuce.png") 
+  obstacle_bas7.set_colorkey((255,255,255))
+  obstacle_bas7=pygame.transform.scale(obstacle_bas7,(80,80)) #modification de sa taille#
+
+  obstacle_bas=[obstacle_bas1,obstacle_bas2,obstacle_bas3,obstacle_bas4,obstacle_bas5,obstacle_bas6,obstacle_bas7] #création d'une liste contenant les obstacles bas#
   position_obstacle_bas=pygame.Rect(730,320,40,40) #création d'un rectangle contenant les coordonnées de l'obstacle bas#
  
   obstacle_haut1=pygame.image.load("Dracaufeu.png")  #chargement du premier obstacle haut#
@@ -69,7 +73,7 @@ def jeu1(jouer,jeu,score,musique):
  
   perso=pygame.image.load("perso.png")  #chargement du personnage#
   perso=pygame.transform.scale(perso,(50,50)) #modification de sa taille#
-  perso.set_colorkey((255,255,255))
+  perso.set_colorkey((255,255,255)) #pas d'affichage des pixels de cette couleur#
   position_perso=pygame.Rect(220,235,25,25) #création d'un rectangle contenant les coordonnées afin de faciliter les manipulations des coordonnées#
 
   perso1=pygame.image.load("perso1.png") 
@@ -105,7 +109,6 @@ def jeu1(jouer,jeu,score,musique):
   score_piece=0 #score ajouté par la récupération d'une pièce#
   delai=0 #temps passé à chaque fois dans le menu de pause#
   duree_pause=0 #temps total passé dans le menu de pause#
-
   continuer=1  #pour la boucle infinie#
   rebours=1 #permet l'activation du compte à rebours#
   crash=0    #test de collision#
@@ -116,7 +119,6 @@ def jeu1(jouer,jeu,score,musique):
   present=0   #pas d'obstacle initialement#
   pixels=3  #nombre de pixels soustraits à l'abscisse de l'obstacle#
   nb_vies=2 
-  
   crash1=0 #test de collision avec la pièce#
   present1=0 #pas de pièce initialement#
   
@@ -157,7 +159,7 @@ def jeu1(jouer,jeu,score,musique):
       rebours=0 #permet de ne plus rentrer dans la condition et de ne plus afficher le compte à rebours#
       debut=time.clock()  #début de la mesure du temps# 
 
-    """a chaque entrée dans la boucle, mesure du score pour pouvoir l'envoyer aux fonctions"""
+    """à chaque entrée dans la boucle, mesure du score pour pouvoir l'envoyer aux fonctions et l'afficher"""
     fin=time.clock()
     score=int(round(fin-debut-duree_pause))+score_piece
     affichage_score=font.render(str(score),0,(255,0,0))
@@ -172,8 +174,8 @@ def jeu1(jouer,jeu,score,musique):
     fenetre.blit(perso,position_perso) #affichage du personnage#
     fenetre.blit(obstacle,position_obstacle) #affichage de l'obstacle#
     fenetre.blit(piece,position_piece) #affichage de la pièce#
-    for loop in range(nb_vies): #affichage des vies#
-      fenetre.blit(vies[loop],position_vies[loop])
+    for i in range(nb_vies): #affichage des vies#
+      fenetre.blit(vies[i],position_vies[i])
 
     '''Obstacle : présence, sélection, défilement et collision'''
     
