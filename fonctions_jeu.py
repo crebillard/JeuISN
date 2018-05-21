@@ -13,7 +13,7 @@ import random
 def creation_obstacle(obstacle_bas,position_obstacle_bas,obstacle_haut,position_obstacle_haut,obstacle,position_obstacle,type_obstacle):
     n=randint(1,2)   #choix aléatoire d'un type d'obstacle#
     if n==1:   #obstacle bas# 
-      n=randint(0,5) #choix d"un obstacle bas parmi les six existant#
+      n=randint(0,6) #choix d"un obstacle bas parmis ceux existant#
       obstacle=obstacle_bas[n]  #affectation aux variables des caractéristiques de l'obstacle sélectionné#
       position_obstacle=position_obstacle_bas
       type_obstacle=1
